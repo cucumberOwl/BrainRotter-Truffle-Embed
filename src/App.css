@@ -1,0 +1,139 @@
+.App {
+    /* max-width: 1280px; */
+    /* padding-top: 6rem; */
+    text-align: left;
+    background: #111;
+  
+  
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    
+    /* Without border-box, the red outline will get cut off by the draggable clip path */
+    box-sizing: border-box;
+    /* border: red 10px solid; */
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
+  .read-the-docs {
+    color: #888;
+  }
+
+  
+.iframe-container iframe
+{
+  position:relative; 
+  top:0px; 
+  left:0px; 
+  bottom:0; 
+  right:0; 
+  width: 450px; 
+  height: 700px;
+  border:none; 
+  margin:0; 
+  padding:0; 
+  overflow:hidden; 
+  z-index:999998;
+}
+
+.logo
+{
+  position:relative; 
+  top: 0;
+  left: 0; 
+  bottom:0; 
+  right:0; 
+  width:50px; 
+  height:50px; 
+  min-width: 50px;
+  min-height: 50px;
+  border:none; 
+  border-radius: 10px;
+  margin:0; 
+  padding:0; 
+  overflow:hidden; 
+  z-index:999999;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);  
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.hide-app {
+  display: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.dropdown {
+  display: none;
+  position: fixed;
+  z-index:999999;
+  list-style: none;
+  background-color: #1a1a1a;
+  
+ }
+
+.show{
+  display: block;
+}
+
+.hide {
+  display: none !important;
+}
+
+
+ .menus {  
+  display: flex;
+  flex-direction: row; /* Below sets up your display method: flex-start|flex-end|space-between|space-around */  
+  /* Below removes bullets and cleans white-space */
+  list-style: none;
+  padding: 0;
+  /* Bonus: forces no word-wrap */
+  white-space: nowrap;  
+  margin-top: 10px;
+}
+
+.menu-items {
+  
+}
+
+ul.dropdown.show {
+  padding-inline-start: 0px;
+}
+
+.dropdown-item {
+  padding: 20px;
+  list-style: none;
+  left: 0;  
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #333333;
+}
+
+button {
+  color: white;
+  margin-right: 5px;
+}
+
+.nav-container
+{
+  display: flex;
+  flex-direction: row;
+  background-color: #1a1a1a;
+}
