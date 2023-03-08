@@ -33,20 +33,45 @@
   }
 
   
-.iframe-container iframe
+  .cont-max
+  {
+    width: 460px !important;
+    height: 760px !important;
+    max-width: 460px !important;
+    min-width: 760px !important;
+  }
+
+.cont-min
 {
-  position:relative; 
-  top:0px; 
-  left:0px; 
-  bottom:0; 
-  right:0; 
-  width: 450px; 
-  height: 700px;
-  border:none; 
-  margin:0; 
-  padding:0; 
-  overflow:hidden; 
-  z-index:999998;
+  width: 0px !important;
+  height: 0px !important;
+  max-width: 0px !important;
+  min-width: 0px !important;
+}
+
+.iframe-container
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+  
+.cont-max iframe
+{
+  position:absolute;
+  top:5px;
+  left: 5px;
+  height: 750px !important;
+  width: 450px !important;
+  
+}
+
+.cont-min iframe
+{
+  position:absolute;
+  top:0px;
+  width: 0px !important;
+  height: 0px !important;
 }
 
 .logo
@@ -81,7 +106,7 @@
 .dropdown {
   display: none;
   position: fixed;
-  z-index:999999;
+  z-index: 999999;
   list-style: none;
   background-color: #1a1a1a;
   
@@ -136,4 +161,24 @@ button {
   display: flex;
   flex-direction: row;
   background-color: #1a1a1a;
+}
+
+.resize-control
+{
+  position: relative;
+  margin-top: -20px;
+  margin-left: 100%;
+  justify-content: right;
+  cursor: se-resize;  
+  z-index: 99999 !important;
+  width: fit-content;
+}
+
+.resize-control div
+{
+  margin-left: -10px;   
+  background-color: black;    
+  padding: 5px;
+  line-height: 0;
+  border-radius: 5px;  
 }

@@ -4,39 +4,36 @@ import './App.css'
 import { embed } from '@trufflehq/sdk'
 import Draggable from './components/Draggable'
 import Navbar from './components/Navbar'
-import { Dimensions, Modifiers, Vector } from "./Draggable.tsx";
+import { Dimensions, Modifiers, Vector } from "./components/Draggable.tsx";
+import Resizeable from './components/Resizeable'
+
 
 function App() {
   const defaultModifier: Modifiers = {
     top: 0, right: 0, bottom: 0, left: 0,
     transition: "none",
   };
-  const base: Vector = { x: 800, y: 800 };
+
+  const maximize: Vector = { x: 460, y: 820 };
+  const base: Vector = { x: 50, y: 50 };
+
   const startingDimensions: Dimensions = {
     base: base,
     modifiers: defaultModifier,
   };
-  const startPosition: Vector = { x: 1400, y: 100 };
+
+  const maxDimensions: Dimensions = {
+    base: maximize,
+    modifiers: defaultModifier,
+  };
+
+  const startPosition: Vector = { x: 1800, y: 100 };
   const [dragProps, setDragProps] = useState(
     {
       dimensions: startingDimensions,
       defaultPosition: startPosition,
     },
   );
-
-  //videos
-  //subway
-  //https://www.youtube.com/embed/ChBg4aowzX8
-  //asmr
-  //https://www.youtube.com/embed/QpxRSFXXrHk
-  //minecraft
-  //https://www.youtube.com/embed/n_Dv4JMiwK8
-  //gta V
-  //https://www.youtube.com/embed/3J-vwMbYc2Y
-  
-
-  //subway surf games
-  //https://files.ufreegame.net/1024/Subway-Surfers-Zurich/
 
   const [isDragging, setIsDragging] = useState(false)
 
@@ -49,15 +46,23 @@ function App() {
       // The size is determined by a clip path
       // embed.setSize("800px", "800px")
       setIsSmall(false)
+      setAppContainerStyle("app-container cont-max")
+      setDragProps({
+        dimensions: maxDimensions, defaultPosition: startPosition
+      })
     } else {
       // embed.setSize("600px", "600px")
       setIsSmall(true)
+      setAppContainerStyle("app-container cont-min")
+      setDragProps({
+        dimensions: startingDimensions, defaultPosition: startPosition
+      })
     }
   }
     
   const appStyles = {
-    width: isSmall ? 50 : 450, 
-    height: isSmall ? 50 : 700    
+    width: isSmall ? 50 : 460, 
+    height: isSmall ? 50 : 830    
   }
 
   const startPress = () => {
@@ -68,12 +73,16 @@ function App() {
   const [subwaylink, setLink] = useState('');
   const [appMenu, setAppMenuClass] = useState("app-menu hide");
 
+  const [appContainerStyle, setAppContainerStyle] = useState("app-container cont-min");
+  
+
   const endPress = () => {
     if(!isDragging)
     {
         setSize();
         appMenu == "app-menu" ? setAppMenuClass("app-menu hide") : setAppMenuClass("app-menu")
-        subwaylink ? setLink('') : setLink('https://files.ufreegame.net/1024/Subway-Surfers-Zurich/');
+        if(subwaylink == '')
+          setLink('https://files.ufreegame.net/1024/Subway-Surfers-Zurich/');
     }
   }
 
@@ -92,16 +101,13 @@ function App() {
            <img src={subway} onMouseDown={startPress} onMouseUp={endPress} className="logo" />    
             <div className={appMenu}>
                 <Navbar setLink={menuClick}></Navbar>
-            </div>
+            </div>            
         </div>
-        <div className="app-container">
+        <div className={appContainerStyle}>
             <div className="iframe-container">
-                <iframe src={subwaylink} width="450px" height="700px">
-            </iframe>
-            </div> 
-            <div className="resize-control">
-
-            </div>
+                <iframe src={subwaylink} scrolling="no" frameborder="0">
+                </iframe>
+            </div>             
         </div>
       </div>
     </Draggable>

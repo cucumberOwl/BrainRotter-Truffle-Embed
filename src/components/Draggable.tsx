@@ -3,7 +3,8 @@
 
 import React from 'react'
 import { useEffect, useState} from 'react';
-import { embed } from '@trufflehq/sdk'
+import { embed } from '@trufflehq/sdk';
+
 export interface Vector {
   x: number;
   y: number;
@@ -13,7 +14,7 @@ export interface DragInfo {
   current: Vector;
   start: Vector;
   pressed: boolean;
-  dragabble: boolean;
+  draggable: boolean;
 }
 
 export interface Modifiers {
@@ -62,6 +63,8 @@ function createIframeStyle(dimensions: Dimensions, dragInfo: DragInfo) {
   //remove clip path if mouse is pressed or if the user is currently moused down on a non draggable item
   // this gives us mouse events across the entire page so we don't lose a mouse up event
   if (dragInfo.pressed || !dragInfo.draggable) style["clipPath"] = "none";
+
+  ///style["clipPath"] = "none"
   return style;
 }
 
@@ -121,7 +124,11 @@ export default function Draggable(
       style={createIframeStyle(dimensions, dragInfo)}
       onMouseDown={(e: { target: Element }) => {
         const target = e.target as Element;
-        const classes: string = target.className;
+        var classes: string = target.className;
+        if(classes.baseVal)
+        {
+          classes = classes.baseVal.toString();
+        }
         if (
           requiredClassName && !classes.includes(requiredClassName)
         ) {
